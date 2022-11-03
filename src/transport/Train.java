@@ -19,16 +19,8 @@ public class Train extends Transport{
         } else {
             this.tripTime = tripTime;
         }
-        if (departureStation == null || departureStation.isBlank()) {
-            this.departureStation = "default";
-        } else {
-            this.departureStation = departureStation;
-        }
-        if (finalStop == null || finalStop.isBlank()) {
-            this.finalStop = "default";
-        } else {
-            this.finalStop = finalStop;
-        }
+        this.departureStation = validOrDefault(departureStation);
+        this.finalStop = validOrDefault(finalStop);
         if (wagonNumber <= 0) {
             this.wagonNumber = 1;
         } else {

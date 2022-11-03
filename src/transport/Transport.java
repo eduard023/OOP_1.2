@@ -9,30 +9,14 @@ public abstract class Transport {
     private int maxSpeed;
 
     public Transport(String brand, String model, int productionYear, String productionCountry, String color, int maxSpeed) {
-        if (brand == null || brand.isBlank()) {
-            this.brand = "default";
-        } else {
-            this.brand = brand;
-        }
-        if (model == null || model.isBlank()) {
-            this.model = "default";
-        } else {
-            this.model = model;
-        }
-        if (productionCountry == null || productionCountry.isBlank()) {
-            this.productionCountry = "default";
-        } else {
-            this.productionCountry = productionCountry;
-        }
+        this.brand = validOrDefault(brand);
+        this.model = validOrDefault(model);
+        this.productionCountry = validOrDefault(productionCountry);
+        this.color = validOrDefault(color);
         if (productionYear == 0) {
             this.productionYear = 2000;
         } else {
             this.productionYear = productionYear;
-        }
-        if (color == null || color.isEmpty() ||color.isBlank()){
-            this.color = "default";
-        }else {
-            this.color = color;
         }
         if (maxSpeed < 0){
             this.maxSpeed = 60;
@@ -40,7 +24,6 @@ public abstract class Transport {
             this.maxSpeed = maxSpeed;
         }
     }
-
     public String getBrand() {
         return brand;
     }
@@ -81,4 +64,12 @@ public abstract class Transport {
     }
     }
     public abstract void refill();
+
+    public String validOrDefault(String value){
+        if (value == null || value.isBlank()) {
+            return "default";
+        } else {
+            return value;
+        }
+    }
 }
